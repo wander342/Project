@@ -1,10 +1,11 @@
-from models.statistics_service import StatisticsService
+from presenters.analytics_presenter import AnalyticsPresenter
+
 class AnalyticsController:
-    @staticmethod
-    def analyze_student_performance(students):
-        average_grades = [student.get_average_grade() for student in students]
-        median_grades = [StatisticsService.calculate_median(list(student.disciplines.values())) for student in students]
-        return {
-            "average_grade": StatisticsService.calculate_average(average_grades),
-            "median_grade": StatisticsService.calculate_average(median_grades)
-        }
+    def __init__(self, analytics_service, analytics_view):
+        self.analytics_service = analytics_service
+        self.analytics_view = analytics_view
+
+    def analyze_student_performance(self):
+        analysis_results = self.analytics_service.analyze_student_performance()
+        self.analytics_view.display_analysis_results(analysis_results)
+        return analysis_results

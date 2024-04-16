@@ -1,13 +1,16 @@
 from typing import List
+
 class StatisticsService:
     @staticmethod
     def calculate_average(data: List[float]) -> float:
         if not data:
             return 0
         return sum(data) / len(data)
+
     @staticmethod
     def calculate_total(data: List[float]) -> float:
         return sum(data)
+
     @staticmethod
     def calculate_median(data: List[float]) -> float:
         if not data:
